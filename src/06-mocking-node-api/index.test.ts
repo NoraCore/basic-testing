@@ -45,11 +45,17 @@ describe('doStuffByInterval', () => {
     jest.useRealTimers();
   });
 
-  test('should set interval with provided callback and timeout', () => {
-    const callback = jest.fn();
-    doStuffByInterval(callback, 500);
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-    expect(setInterval).toHaveBeenCalledWith(callback, 500);
+  test('should set interval with provided callback and timeout', () => {
+    const mockTimeoutMS = 500;
+    const callback = jest.fn();
+    const setTimeoutSpy = jest.spyOn(global, 'setInterval');
+
+    doStuffByInterval(callback, mockTimeoutMS);
+    expect(setTimeoutSpy).toHaveBeenCalledWith(callback, mockTimeoutMS);
   });
 
   test('should call callback multiple times after multiple intervals', () => {

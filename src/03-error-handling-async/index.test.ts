@@ -27,17 +27,16 @@ describe('throwError', () => {
 
 describe('throwCustomError', () => {
   test('should throw custom error', () => {
-    const thisIsMyAwesomeCustomError = 'This is my awesome custom error!';
+    const customError = 'This is my awesome custom error!';
     expect(() => throwCustomError()).toThrow(MyAwesomeError);
-    expect(() => throwCustomError()).toThrow(thisIsMyAwesomeCustomError);
+    expect(() => throwCustomError()).toThrow(customError);
   });
 });
 
 describe('rejectCustomError', () => {
   test('should reject custom error', async () => {
+    const customError = 'This is my awesome custom error!';
     await expect(rejectCustomError()).rejects.toBeInstanceOf(MyAwesomeError);
-    await expect(rejectCustomError()).rejects.toThrow(
-      'This is my awesome custom error!',
-    );
+    await expect(rejectCustomError()).rejects.toThrow(customError);
   });
 });
