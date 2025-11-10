@@ -1,10 +1,10 @@
+import axios, { AxiosInstance } from 'axios';
+import { throttledGetDataFromApi } from './index';
+
 jest.mock('axios');
 jest.mock('lodash', () => ({
   throttle: jest.fn((fn) => fn),
 }));
-
-import axios, { AxiosInstance } from 'axios';
-import { throttledGetDataFromApi } from './index';
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
